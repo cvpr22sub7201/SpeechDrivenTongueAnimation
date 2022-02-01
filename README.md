@@ -1,5 +1,7 @@
 # Speech Driven Tongue Animation
 
+![banner](images/banner.png)
+
 This repository has the code for submission 7201. The data, pre-trained models, and facial rig will be released upon publication.
 
 For clarification purposes this repository has the code for training, testing and visualizing the results shown in the video.
