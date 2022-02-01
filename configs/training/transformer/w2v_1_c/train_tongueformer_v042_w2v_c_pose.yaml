@@ -1,0 +1,45 @@
+name: 'tongueformer 042'
+data:
+  train:
+    path: 'w2v/1.0/c/nonorm_azel/train_data_50fps.npy'
+    num_files: 1600
+    num_workers: 16
+    win_sz: 15
+    win_stride: 1
+    pose_only: False
+  valid:
+    path: 'w2v/1.0/c/nonorm_azel/valid_data_50fps.npy'
+    num_files: 400
+    num_workers: 16
+    win_sz: 15
+    win_stride: 1
+    pose_only: False
+training: 
+  num_epochs: 1000
+  batch_sz: 128
+  learning_rate: 1e-7
+  loss: 'huber'
+  output_idx: -1
+  output_full: True
+  early_stop: 10
+model:
+  multi_gpu: False
+  params:
+    num_frames: 15
+    in_feat_dim: 1024
+    out_idx: 14
+    out_full: True
+    num_joints: 10
+    num_layers: 4
+    num_heads: 4
+    mlp_ratio: 2
+    qkv_bias: True
+    qk_scale: None
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.2
+    norm_layer: None
+    mask: no_peek
+  save_dir: 'train/w2v/1.0/c/pose/tongueformer/v042/'
+log:
+  save_dir: 'train/w2v/1.0/c/pose/tongueformer/v042/'

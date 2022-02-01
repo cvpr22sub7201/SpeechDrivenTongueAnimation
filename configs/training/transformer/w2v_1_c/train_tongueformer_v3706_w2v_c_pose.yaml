@@ -1,0 +1,60 @@
+name: 'tongueformer 3706'
+data:
+  train:
+    path: 'w2v/1.0/c/nonorm_azel/train_data_50fps.npy'
+    num_files: 1600
+    num_workers: 16
+    win_sz: 15
+    win_stride: 1
+    pose_only: False
+  valid:
+    path: 'w2v/1.0/c/nonorm_azel/valid_data_50fps.npy'
+    num_files: 400
+    num_workers: 16
+    win_sz: 15
+    win_stride: 1
+    pose_only: False
+training: 
+  num_epochs: 500
+  batch_sz: 128
+  loss: 
+    label: 'l2l1'
+    params: 
+      betas:
+        l2: 0.9
+        l1: 0.1
+  output_idx: -1
+  output_full: True
+  early_stop: 10
+optim:
+  label: 'adam'
+  params:
+    lr: 1e-5
+    weight_decay: 0.1
+scheduler: 
+  label: exp_lr
+  gamma: 0.98
+model:
+  multi_gpu: False
+  params:
+    num_frames: 15
+    in_feat_dim: 1024
+    out_idx: 14
+    out_full: True
+    num_joints: 10
+    num_layers: 4
+    num_heads: 8
+    mlp_ratio: 2
+    qkv_bias: True
+    qk_scale: None
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.2
+    norm_layer: None
+    mask: no_peek
+  save_dir: 'train/w2v/1.0/c/pose/tongueformer/v3706/'
+log:
+  save_dir: 'train/w2v/1.0/c/pose/tongueformer/v3706/'
+checkpoint:
+  path: 'train/w2v/1.0/c/pose/tongueformer/v037/240.pt'
+  reset: True

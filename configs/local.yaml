@@ -1,0 +1,4 @@
+datasets_dir: ./data
+animation_dir: ./renders
+models_dir: ./models
+logs_dir: ./logs

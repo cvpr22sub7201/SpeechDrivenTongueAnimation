@@ -1,0 +1,22 @@
+data: 
+  train_path: 'w2v/1.0/c/nonorm_azel/train_data_50fps.npy'
+  valid_path: 'w2v/1.0/c/nonorm_azel/valid_data_50fps.npy'
+  num_train_files: 1600
+  num_dataload_workers: 10
+  input_win_sz: 5
+  output_win_sz: 1
+  win_stride: 1
+training:
+  multi_gpu: False
+  num_epochs: 40
+  batch_sz: 32
+  dropouts: [0., 0.]
+  learning_rate: 1e-5
+  loss: 'mse'
+model: 
+  input_sz: 5120
+  hidden_szs: [1024, 256]
+  output_sz: 30
+  save_dir: 'train/w2v/1.0/c/pose/mlp/mse/mlp_5v1'
+log:
+  save_dir: 'train/w2v/1.0/c/pose/mlp/mse/mlp_5v1'

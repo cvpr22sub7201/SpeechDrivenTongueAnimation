@@ -1,0 +1,55 @@
+name: 'tongueformer 107'
+data:
+  train:
+    path: 'ds/nonorm_azel/train_data_50fps.npy'
+    num_files: 1600
+    num_workers: 16
+    win_sz: 50
+    win_stride: 1
+    pose_only: False
+  valid:
+    path: 'ds/nonorm_azel/valid_data_50fps.npy'
+    num_files: 400
+    num_workers: 16
+    win_sz: 50
+    win_stride: 1
+    pose_only: False
+training: 
+  num_epochs: 1000
+  batch_sz: 128
+  loss: 
+    label: 'huber'
+    params:
+      delta: 3.0
+  output_idx: 49
+  output_full: True
+  early_stop: 100
+optim:
+  label: 'adam'
+  params:
+    lr: 5e-8
+    weight_decay: 0.0
+scheduler: 
+  label: None
+model:
+  multi_gpu: False
+  params:
+    num_frames: 50
+    in_feat_dim: 1024
+    out_idx: 49
+    out_full: True
+    num_joints: 10
+    num_layers: 6
+    num_heads: 8
+    mlp_ratio: 2
+    qkv_bias: True
+    qk_scale: None
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.2
+    norm_layer: None
+    mask: None
+    deeper_fc: False
+  save_dir: 'train/ds/pose/tongueformer/v107/'
+log:
+  save_dir: 'train/ds/pose/tongueformer/v107/'
